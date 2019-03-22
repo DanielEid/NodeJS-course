@@ -1,12 +1,5 @@
 //~~~~~~Functions~~~~~~//
 
-/**
- * @function startServerCallback -on Resquest
- * @param req = info demandée par le client
- * @param res = re-envoyée au client
- * @info Pour avoir du bon code html et des éléments deja realisés voir des templates. 
- */
-
 let startServerCallback = function(req, res){  
     res.writeHead(200, {"Content-Type": "text/html"});  //indique code de retour + type MIME
 
@@ -25,34 +18,31 @@ let startServerCallback = function(req, res){
 }
 
 let closeServerCallback= function(){
-    console.log("Second message: Server closed");
+    console.log("Server closed");
 }
 
-//~~~~~~Parameters~~~~~~~//
-var http = require('http');   //crée un objet http nécésaire pour creer le serveur
+let closeGameCallback = function(message){
+    console.log(message);
+}
+
+//~~~~~~Librairies~~~~~~~//
+var http = require('http');  
 var EventEmitter = require('events').EventEmitter;  //crée un objet recuperant la librairie pour crée des events
 
 
+//~~~~~~Variables~~~~~~~//
+let server = http.createServer(); //creation du serveur
+let jeu = new EventEmitter();  //creation de l'event custom
+
 //~~~~~~Listeners~~~~~~//
 
-/*
-var server = http.createServer(innerServer); //crée le serveur en appelant la fonction (peut être anonyme)
-OU
-*/
-var server = http.createServer(); //creation du serveur
 server.on('request',startServerCallback); //lorsque le serveur est demander je crée le serveur en callback (peut etre anonyme)
-
-
-server.on('close',function(){
-console.log("Server closed")
-});
-// OU
 server.on('close',closeServerCallback); //Appel une fonction lorsque l'évenement server close est executé
 
-jeu.on("gameStart",function(message){   //Creation du callback pour l'event custom 
+jeu.on("gameClose",function(message){closeGameCallback(message)}); //creation callback avec appel de fonction avec arguments (encaptulation de la fonction avec la fonction anonyme => anonyme pour le coup c'est mieux)
+jeu.on("gameStart",function(message){   //Creation du callback pour l'event custom avec fonction anonyme
     console.log("Message event: " +message);
    })
-
 
 
 //~~~~~~Main~~~~~~//
@@ -60,9 +50,8 @@ jeu.on("gameStart",function(message){   //Creation du callback pour l'event cust
 server.listen(8080); //Le serveur écoute sur le port 8080
 
 
-let jeu = new EventEmitter();  //creation de l'event custom
-
 jeu.emit("gameStart","Le jeu commence");   //send l'event custom
+jeu.emit("gameClose","Le jeu ce termine");   //send l'event custom
 
 
 server.close();
