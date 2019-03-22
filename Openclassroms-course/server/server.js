@@ -25,14 +25,17 @@ let closeGameCallback = function(message){
     console.log(message);
 }
 
-//~~~~~~Librairies~~~~~~~//
+//~~~~~~Modules~~~~~~~//
 var http = require('http');  
 var EventEmitter = require('events').EventEmitter;  //crée un objet recuperant la librairie pour crée des events
+let test = require('test');  //module custom pas d'indication du path car dans node_modules
+var markdown = require('markdown').markdown; // module télécharger avec npm 
 
 
 //~~~~~~Variables~~~~~~~//
 let server = http.createServer(); //creation du serveur
 let jeu = new EventEmitter();  //creation de l'event custom
+ 
 
 //~~~~~~Listeners~~~~~~//
 
@@ -53,5 +56,8 @@ server.listen(8080); //Le serveur écoute sur le port 8080
 jeu.emit("gameStart","Le jeu commence");   //send l'event custom
 jeu.emit("gameClose","Le jeu ce termine");   //send l'event custom
 
+test.direBonjour();  //appel fonction static du module custom
+
+console.log(markdown.toHTML('Un paragraphe en **markdown** !'));  // appel module et fonction du module voir doc // Doc des modules sur https://www.npmjs.com/
 
 server.close();
