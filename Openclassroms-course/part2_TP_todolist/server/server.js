@@ -16,11 +16,27 @@ app.get('/', function(req, res) {
     res.send('Vous êtes à l\'accueil');
 })
 
-.get('/todolist', function(req, res) {    
+.get('/todo', function(req, res) {
     
-     
-        res.render('todolist.ejs'); 
+     res.render('todolist.ejs'); 
       
+})
+.post('/todo/add', function(req, res) {
+    
+    res.status(200);    
+    res.end();
+     
+})
+.get('/todo/delete/:id', function(req, res) {
+    
+    let id=req.params.id;
+    c(id);
+
+    res.status(200);
+    res.setHeader('Content-Type', 'text/plain');
+    res.send('Vous êtes à la page de supression');
+    res.end();
+     
 })
 .use(function(req, res, next){ 
     res.setHeader('Content-Type', 'text/html');
@@ -32,5 +48,5 @@ app.get('/', function(req, res) {
 
 app.listen(8080);
 
-cl("\n");
+c("\n");
 
