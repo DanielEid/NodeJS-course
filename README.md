@@ -6,4 +6,4 @@
  - master : branche principale
  - openclassroms-course: Entrainement et suivi du cours.
  
- ⇒ En ce moment: install et commit avec les nodes modules pas d'ajout dans gitignore pour le moment
+ ⇒ Actualitée sur openclassroms-course: Les nodes_modules sont présent dans le repo pas d'ajout dans gitignore pour le moment.

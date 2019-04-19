@@ -1,7 +1,16 @@
 {
     "name": "Openclassroms-course",
     "version": "0.1.0",
+    "author": "DanielEid",
+    "description": "L'entrainement de openclassroms",
+    "contributors": [
+        {
+            "name": "Daniel Eid",
+            "email": "daniel-eid@mail.fr"
+        }
+    ],
     "dependencies": {
+        "express": "^4.16.4",
         "markdown": "~0.5.0"
-    }    
+    }
 }
