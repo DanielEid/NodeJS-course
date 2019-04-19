@@ -12,5 +12,5 @@
   * Chapitre en cour Express.js ==> TP
   
  
- ⇒ Actualitée sur openclassroms-course: 
+ ⇒ Actualitée sur TP_todolist: 
   * Initialisation + routes + package + view
